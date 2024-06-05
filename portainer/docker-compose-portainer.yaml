@@ -1,0 +1,11 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${CONFIG_DIR:?err}/portainer:/data
+    ports:
+      - "${WEBUI_PORT_PORTAINER:?err}:9443"
+    network_mode: bridge
